@@ -59,6 +59,19 @@
 | Verificação realizada | 44 testes passando (`npm test`), lint e TypeScript sem erros. Teste de mutação: com `Math.ceil` direto, 2 testes falharam; com imposto sobre o lucro, 6 falharam. Verificação humana: **pendente**. O enunciado (p.7) pede que um integrante diferente de quem orientou o agente revise `calculatePricing` e explique entradas e saídas |
 | Decisão humana | **Pendente** |
 
+## 5. Passo 6 — interface ← sugestão alterada pela equipe
+
+| Campo | Registro |
+|---|---|
+| Data | 28/09/2026 |
+| Integrante | Carlos |
+| Objetivo | Construir a interface com formulário, conta armada, comparação de preços, gráfico e exportação |
+| Prompt utilizado | "execute o plano da tarefa com base o pdf […]"; depois: "nao gosto dos modal ter a cor de fundo do sistema, preciso que melhore isso dai" e "busque referencias e melhore elas com as skills de designe" |
+| Arquivos alterados | `app/`, `components/`, `lib/format.ts`, `lib/ledger.ts`, `lib/verdict.ts`, `lib/export.ts`, `lib/chart.ts` e testes |
+| Sugestão da IA (antes) | Painel da conta branco sobre fundo quase branco |
+| Verificação realizada | Carlos reprovou a cor do painel. A IA pesquisou novas referências (Wise, Stripe, Remote) e trocou para azul caneta. Conferido em prints no computador e no celular (vazio, exemplo, erro, sem equilíbrio), 71 testes, detector de padrões de IA sem achados, console sem erros e Lighthouse com acessibilidade 100 |
+| Decisão humana | **Alterada:** painel em azul caneta com marca-texto amarelo |
+
 ---
 
 ## Modelo para as próximas interações

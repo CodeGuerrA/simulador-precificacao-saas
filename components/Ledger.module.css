@@ -1,0 +1,310 @@
+/* Painel da conta em azul caneta: a superfície comprometida da página (referências: Wise, Stripe, Remote). */
+.panel {
+  --term-muted: var(--color-on-pen-muted);
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-8);
+  background: var(--color-pen);
+  color: var(--color-on-pen);
+  border-radius: var(--radius-large);
+}
+
+.panel :focus-visible {
+  outline-color: var(--color-on-pen);
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: var(--font-size-subtitle);
+  letter-spacing: 0;
+}
+
+.toggle {
+  padding: var(--space-2) 0;
+  border: 0;
+  background: none;
+  color: var(--color-on-pen-muted);
+  font: inherit;
+  font-size: var(--font-size-small);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.toggle:hover {
+  color: var(--color-on-pen);
+}
+
+.verdict {
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  max-width: 52ch;
+}
+
+.verdict[data-tone="positive"] {
+  color: var(--color-on-pen-positive);
+}
+
+.verdict[data-tone="negative"] {
+  color: var(--color-on-pen-negative);
+}
+
+.verdict[data-tone="empty"] {
+  color: var(--color-on-pen-muted);
+  font-weight: 400;
+}
+
+/* Conta armada: operador, valor alinhado à direita, descrição. */
+.sum {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.sum td {
+  padding: var(--space-2) 0;
+  vertical-align: baseline;
+}
+
+.operator {
+  width: 1.5em;
+  font-size: 22px;
+  color: var(--color-on-pen-muted);
+}
+
+.value {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 22px;
+  font-weight: 500;
+  padding-right: var(--space-6) !important;
+}
+
+.description {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.work {
+  font-size: var(--font-size-caption);
+  color: var(--color-on-pen-muted);
+  line-height: 1.4;
+}
+
+.totalRow td {
+  padding-top: var(--space-4);
+}
+
+/* O traço de total da conta: 2px, só sobre as colunas de operador e valor. */
+.totalRow .operator,
+.totalRow .value {
+  border-top: 2px solid var(--color-on-pen);
+}
+
+.totalRow .value {
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.totalRow .operator {
+  color: var(--color-on-pen);
+}
+
+.placeholder {
+  color: var(--color-on-pen-muted);
+}
+
+.indicators {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid color-mix(in srgb, var(--color-on-pen-line) 45%, transparent);
+}
+
+.indicator {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+}
+
+.indicator dt {
+  font-size: var(--font-size-small);
+}
+
+.indicator dd {
+  margin: 0;
+}
+
+.indicatorValue {
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+}
+
+/* Marca-texto: resposta com fundo permanente; linha alterada recebe uma passada que desbota.
+   O número branco fica embaixo; uma cópia em tinta (::after) aparece recortada na mesma medida
+   do amarelo (::before), então o texto é legível em cada instante da passada. */
+.mark {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.answer::before,
+.flash::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  /* Como um marca-texto de verdade: pega a parte de baixo das letras, não a linha inteira. */
+  inset: 0.32em -0.18em 0.02em;
+  border-radius: 2px;
+  background: var(--color-highlight);
+  transform-origin: left center;
+}
+
+.answer::after,
+.flash::after {
+  /* Reserva para navegador sem texto alternativo; a linha seguinte evita leitura dupla no leitor de tela. */
+  content: attr(data-text);
+  content: attr(data-text) / "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  color: var(--color-ink);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.flash::before {
+  animation: highlighter-pass 1500ms both;
+  animation-delay: var(--flash-delay, 0ms);
+}
+
+.flash::after {
+  animation: ink-reveal 1500ms both;
+  animation-delay: var(--flash-delay, 0ms);
+}
+
+.answer.flash::before {
+  animation: highlighter-stroke 320ms cubic-bezier(0.2, 0, 0, 1) both;
+  animation-delay: var(--flash-delay, 0ms);
+}
+
+.answer.flash::after {
+  animation: ink-stroke 320ms cubic-bezier(0.2, 0, 0, 1) both;
+  animation-delay: var(--flash-delay, 0ms);
+}
+
+@keyframes highlighter-pass {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+  21% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  68% {
+    transform: scaleX(1);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.3, 0, 1, 1);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes ink-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+  21% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  68% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.3, 0, 1, 1);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+}
+
+@keyframes highlighter-stroke {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes ink-stroke {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Sem animação: a linha alterada fica marcada, com texto em tinta, até o próximo cálculo. */
+@media (prefers-reduced-motion: reduce) {
+  .flash::before,
+  .flash::after,
+  .answer.flash::before,
+  .answer.flash::after {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .operator,
+  .value {
+    font-size: 19px;
+  }
+
+  .value {
+    padding-right: var(--space-4) !important;
+  }
+
+  .indicators {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}

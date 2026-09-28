@@ -1,0 +1,118 @@
+.figure {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.canvas {
+  width: 100%;
+  max-width: 960px;
+  min-width: 0;
+}
+
+.svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.gridLine {
+  stroke: var(--color-line);
+  stroke-width: 1;
+}
+
+.zeroLine {
+  stroke: var(--color-ink);
+  stroke-width: 1.5;
+}
+
+.axisLabel {
+  fill: var(--color-graphite);
+  font-size: 13px;
+}
+
+.axisTitle {
+  fill: var(--color-ink);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.informedMarker {
+  stroke: var(--color-graphite);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.markerLabel {
+  fill: var(--color-graphite);
+  font-size: 12px;
+}
+
+.lineInformed {
+  stroke: var(--color-pen);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.lineComparison {
+  stroke: var(--color-series-b);
+  stroke-width: 2.5;
+  stroke-dasharray: 9 6;
+  stroke-linecap: round;
+}
+
+.breakEvenDot {
+  fill: var(--color-highlight);
+  stroke: var(--color-ink);
+  stroke-width: 1.5;
+}
+
+.breakEvenLabel {
+  fill: var(--color-ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.endLabel {
+  fill: var(--color-pen);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.endLabelComparison {
+  fill: var(--color-series-b);
+}
+
+.caption {
+  max-width: 70ch;
+  font-size: var(--font-size-small);
+  color: var(--color-graphite);
+}
+
+.details summary {
+  width: fit-content;
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.table {
+  margin-top: var(--space-3);
+  border-collapse: collapse;
+  font-size: var(--font-size-small);
+}
+
+.table th,
+.table td {
+  padding: var(--space-2) var(--space-4) var(--space-2) 0;
+  border-bottom: 1px solid var(--color-line);
+  text-align: right;
+}
+
+.table th[scope="col"] {
+  font-weight: 500;
+  color: var(--color-graphite);
+}

@@ -1,5 +1,20 @@
 import { describe, expect, it } from "vitest";
-import { validatePricingForm, type PricingFormValues } from "./validation";
+import { validateComparisonPrice, validatePricingForm, type PricingFormValues } from "./validation";
+
+describe("segundo preço da comparação", () => {
+  it("vazio significa sem comparação", () => {
+    expect(validateComparisonPrice("  ")).toEqual({ ok: true, price: null });
+  });
+
+  it("lê o formato brasileiro", () => {
+    expect(validateComparisonPrice("60,00")).toEqual({ ok: true, price: 60 });
+  });
+
+  it("recusa texto e negativo com a mesma mensagem do preço", () => {
+    expect(validateComparisonPrice("abc")).toEqual({ ok: false, error: "Digite um número, por exemplo 50,00." });
+    expect(validateComparisonPrice("-1")).toEqual({ ok: false, error: "O preço não pode ser negativo." });
+  });
+});
 
 const pdfExample: PricingFormValues = {
   fixedCost: "3.000,00",

@@ -1,0 +1,56 @@
+/* Faixa de fechamento em azul caneta (referência: faixa escura da Remote). */
+.footer {
+  margin-top: var(--space-8);
+  background: var(--color-pen);
+  color: var(--color-on-pen);
+}
+
+.footer :focus-visible {
+  outline-color: var(--color-on-pen);
+}
+
+.footerInner {
+  display: grid;
+  gap: var(--space-6);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6);
+}
+
+.footerTitle {
+  font-size: var(--font-size-subtitle);
+  letter-spacing: 0;
+}
+
+.provenance {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-6);
+  margin: 0;
+  font-size: var(--font-size-small);
+}
+
+.provenance dt {
+  font-weight: 600;
+}
+
+.provenance dd {
+  margin: var(--space-1) 0 0;
+  color: var(--color-on-pen-muted);
+}
+
+@media (max-width: 1023px) {
+  .provenance {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .footerInner {
+    padding: var(--space-8) var(--space-4);
+  }
+
+  .provenance {
+    grid-template-columns: 1fr;
+  }
+}

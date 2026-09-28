@@ -1,0 +1,65 @@
+.table {
+  width: 100%;
+  max-width: 760px;
+  border-collapse: collapse;
+}
+
+.caption {
+  text-align: left;
+  caption-side: top;
+  padding-bottom: var(--space-4);
+  font-size: var(--font-size-small);
+  color: var(--color-graphite);
+}
+
+.table th,
+.table td {
+  padding: var(--space-3) 0 var(--space-3) var(--space-6);
+  border-bottom: 1px solid var(--color-line);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.table thead th {
+  font-weight: 600;
+  vertical-align: bottom;
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.table th[scope="row"],
+.table thead .indicatorHead {
+  padding-left: 0;
+  text-align: left;
+  font-weight: 400;
+}
+
+.resultRow td {
+  font-weight: 600;
+}
+
+.note {
+  font-weight: 400;
+  color: var(--color-graphite);
+  font-size: var(--font-size-small);
+}
+
+.swatchInformed,
+.swatchComparison {
+  display: inline-block;
+  width: 20px;
+  margin-right: var(--space-2);
+  vertical-align: middle;
+  border-top: 3px solid var(--color-pen);
+}
+
+.swatchComparison {
+  border-top: 3px dashed var(--color-series-b);
+}
+
+@media (max-width: 640px) {
+  .table th,
+  .table td {
+    padding-left: var(--space-3);
+    white-space: normal;
+  }
+}

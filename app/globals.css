@@ -1,19 +1,29 @@
 /* Tokens da direção visual.
    Contrastes verificados pela fórmula da WCAG em 28/09/2026. */
 :root {
+  /* Trio do caderno: caneta azul (superfície e ação), marca-texto (só a resposta), lápis grafite. */
   --color-paper: #fcfcfb;
   --color-surface: #ffffff;
-  --color-field: #f4f4f2;
+  --color-field: #eef2fa;
   --color-line: #e4e2e1;
   --color-grid: #a8a5a3;
   --color-placeholder: #6f6c6a;
   --color-graphite: #55585b;
   --color-ink: #1c1b1b;
   --color-highlight: #ffe14d;
-  --color-series-b: #3e6fa3;
+  --color-pen: #1c3f94;
+  --color-pen-strong: color-mix(in srgb, var(--color-pen) 78%, black);
+  --color-series-b: var(--color-graphite);
   --color-positive: #1e6b3a;
   --color-negative: #a8261b;
   --color-warning: #7a4f00;
+
+  /* Sobre o azul caneta: texto e estados tingidos da mesma matiz, nunca cinza. */
+  --color-on-pen: #ffffff;
+  --color-on-pen-muted: #c9d3f0;
+  --color-on-pen-line: #a9b8e6;
+  --color-on-pen-positive: #9fe3b4;
+  --color-on-pen-negative: #ffb8ad;
 
   --font-size-answer: clamp(40px, 6vw, 56px);
   --font-size-title: clamp(30px, 4vw, 40px);
@@ -90,8 +100,29 @@ p {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-ink);
+  outline: 2px solid var(--color-pen);
   outline-offset: 2px;
+}
+
+/* Superfícies do navegador também seguem a paleta. */
+::selection {
+  background: var(--color-highlight);
+  color: var(--color-ink);
+}
+
+html {
+  scrollbar-color: var(--color-grid) var(--color-paper);
+  accent-color: var(--color-pen);
+}
+
+a {
+  color: var(--color-pen);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+button {
+  touch-action: manipulation;
 }
 
 @media (prefers-reduced-motion: reduce) {

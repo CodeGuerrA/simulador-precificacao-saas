@@ -1,0 +1,183 @@
+.page {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6) var(--space-16);
+}
+
+.skipLink {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-pen);
+  color: var(--color-on-pen);
+  border-radius: var(--radius-medium);
+  z-index: 10;
+}
+
+.skipLink:focus {
+  top: var(--space-4);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.headerText {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 62ch;
+}
+
+.lede {
+  color: var(--color-graphite);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-12);
+  margin-top: var(--space-8);
+}
+
+.form {
+  grid-column: span 5;
+  display: grid;
+  align-content: start;
+  gap: var(--space-8);
+}
+
+.ledgerColumn {
+  grid-column: span 7;
+  position: sticky;
+  top: var(--space-6);
+  align-self: start;
+}
+
+.group {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+}
+
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.hint {
+  font-size: var(--font-size-caption);
+  color: var(--color-graphite);
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 48px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-medium);
+  font: inherit;
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.primaryButton {
+  border: 1px solid var(--color-pen);
+  background: var(--color-pen);
+  color: var(--color-on-pen);
+}
+
+.primaryButton:hover {
+  border-color: var(--color-pen-strong);
+  background: var(--color-pen-strong);
+}
+
+.secondaryButton {
+  border: 1px solid var(--color-pen);
+  background: transparent;
+  color: var(--color-pen);
+}
+
+.secondaryButton:hover {
+  background: var(--color-field);
+}
+
+.section {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-line);
+}
+
+.sectionHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.sectionLede {
+  max-width: 70ch;
+  color: var(--color-graphite);
+}
+
+.comparisonField {
+  max-width: 360px;
+}
+
+.emptyNote {
+  color: var(--color-graphite);
+  font-size: var(--font-size-small);
+}
+
+@media (max-width: 1023px) {
+  /* Uma coluna: com 12 colunas, os 11 espaços entre elas somariam mais que a largura do celular. */
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form,
+  .ledgerColumn {
+    grid-column: 1;
+  }
+
+  .ledgerColumn {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-8) var(--space-4) var(--space-12);
+  }
+
+  .header {
+    align-items: stretch;
+  }
+
+  .secondaryButton,
+  .primaryButton {
+    width: 100%;
+  }
+
+  .section {
+    margin-top: var(--space-12);
+  }
+}

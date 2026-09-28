@@ -64,6 +64,17 @@ function readNonNegative(field: PricingField, text: string): { value: number } |
   return { value: parsed.value };
 }
 
+export type ComparisonPriceResult = { ok: true; price: number | null } | { ok: false; error: string };
+
+/** Segundo preço da comparação: opcional, mas quando preenchido segue as regras do preço. */
+export function validateComparisonPrice(text: string): ComparisonPriceResult {
+  if (text.trim() === "") {
+    return { ok: true, price: null };
+  }
+  const read = readNonNegative("price", text);
+  return "error" in read ? { ok: false, error: read.error } : { ok: true, price: read.value };
+}
+
 /** Valida o formulário e devolve a entrada do cálculo, com a taxa já convertida de % para fração (C2). */
 export function validatePricingForm(values: PricingFormValues): ValidationResult {
   const errors: Partial<Record<PricingField, string>> = {};
