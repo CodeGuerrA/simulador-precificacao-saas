@@ -1,15 +1,16 @@
 # Relatório de decisão — preço mensal do serviço por assinatura
 
-> **Rascunho gerado com apoio de IA a partir dos números da aplicação.** A equipe revisa, ajusta e assume a decisão antes da entrega.
-> Grupo: Carlos Garcia, Yuri Dourado e Guilherme Rubatto. Engenharia Econômica, Faculdade SENAI FATESG.
+Faculdade SENAI FATESG, Curso Superior de Engenharia de Software. Disciplina: Engenharia Econômica. Atividade: Opção 2, simulador de precificação SaaS.
+
+Integrantes: Carlos Garcia, Yuri Dourado e Guilherme Rubatto.
 
 ## 1. Problema
 
-Uma pequena empresa de software vai lançar um serviço por assinatura mensal e precisa escolher o preço. O preço precisa cobrir o custo fixo, o custo de cada cliente e os tributos, e o resultado do mês não pode depender de uma quantidade de clientes difícil de alcançar.
+Uma pequena empresa de software vai lançar um serviço por assinatura mensal e precisa escolher quanto cobrar. O preço tem de cobrir o custo fixo, o custo de cada cliente e os tributos. Também não pode depender de uma quantidade de clientes que a empresa dificilmente vai alcançar.
 
 ## 2. Cenário analisado
 
-Dados fictícios de simulação, do teste de referência do enunciado (Opção 2):
+Os dados são fictícios e vêm do teste de referência da Opção 2 do enunciado.
 
 | Premissa | Valor |
 |---|---|
@@ -30,7 +31,7 @@ Dados fictícios de simulação, do teste de referência do enunciado (Opção 2
 | Contribuição por cliente | R$ 35,00 | R$ 44,00 |
 | Clientes de equilíbrio | 86 | 69 |
 
-Três cenários, variando só a quantidade de clientes:
+Também simulamos três cenários, mudando só a quantidade de clientes.
 
 | Cenário | Clientes | Resultado a R$ 50,00 | Resultado a R$ 60,00 |
 |---|---|---|---|
@@ -38,21 +39,21 @@ Três cenários, variando só a quantidade de clientes:
 | Base | 100 | R$ 500,00 | R$ 1.400,00 |
 | Otimista (+30%) | 130 | R$ 1.550,00 | R$ 2.720,00 |
 
-Sensibilidade a R$ 50,00: a premissa com menor folga é o próprio preço. Uma queda de 11,11% (para R$ 44,44) zera o resultado. A R$ 60,00, a folga do preço sobe para 25,93%, e a dos clientes para 31% (equilíbrio em 69).
+Na análise de sensibilidade, a premissa com menor folga a R$ 50,00 é o próprio preço. Uma queda de 11,11%, para R$ 44,44, já zera o resultado. A R$ 60,00, o preço pode cair 25,93% antes de zerar o resultado, e a quantidade de clientes pode cair 31%, até o equilíbrio em 69.
 
 ## 4. Alternativa defendida
 
-**Preço de R$ 60,00**, pelo critério declarado na aplicação: maior resultado do mês com a quantidade de clientes prevista.
+A equipe defende o **preço de R$ 60,00**. O critério é o mesmo declarado na aplicação: maior resultado do mês com a quantidade de clientes prevista.
 
-Nas premissas da simulação, R$ 60,00 tem resultado maior nos três cenários, precisa de 17 clientes a menos para o equilíbrio (69 contra 86) e continua positivo no cenário pessimista, em que R$ 50,00 fica negativo.
+Com as premissas da simulação, R$ 60,00 dá resultado maior nos três cenários e precisa de 17 clientes a menos para chegar ao equilíbrio (69 contra 86). No cenário pessimista, R$ 60,00 ainda fica positivo, com R$ 80,00, enquanto R$ 50,00 fica em −R$ 550,00.
 
 ## 5. Principal risco
 
-A comparação supõe a **mesma quantidade de clientes nos dois preços**. Um preço mais alto pode afastar clientes, e o modelo não mede essa reação.
+A comparação parte da premissa de que os dois preços teriam a **mesma quantidade de clientes**. Na prática, um preço mais alto pode afastar parte deles, e o modelo não mede essa reação.
 
 ## 6. Condição que mudaria a decisão
 
 - A R$ 60,00 são necessários **pelo menos 80 clientes** para igualar o resultado de R$ 50,00 com 100 clientes. Se o preço maior afastar **mais de 20 clientes**, R$ 50,00 passa a ser a melhor escolha.
 - Se a quantidade real de clientes ficar abaixo de 69, nenhum dos dois preços cobre os custos, e a decisão passa a ser rever custos ou o próprio lançamento.
 
-Outra taxa de tributos ou outros custos levam a outros números. A conclusão vale para as premissas acima, e a aplicação permite refazer a conta com os dados reais da empresa.
+Com outra taxa de tributos ou outros custos, os números mudam. A conclusão vale para as premissas deste relatório, e a aplicação permite refazer a conta com os dados reais da empresa.
