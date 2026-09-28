@@ -62,14 +62,24 @@ export function buildInterpretation(params: {
     );
 
     const favored = favoredPrice(input, result, comparison);
-    statements.push(`Pelo critério, o preço favorecido é ${formatCurrency(favored)}.`);
+    const bothNegative = result.operatingResult < 0 && comparison.result.operatingResult < 0;
+    statements.push(
+      bothNegative
+        ? `Com os clientes informados, nenhum dos dois preços cobre os custos. Pelo critério, ${formatCurrency(favored)} é o que perde menos, mas a simulação não recomenda nenhum dos dois nessas premissas.`
+        : `Pelo critério, o preço favorecido é ${formatCurrency(favored)}.`,
+    );
 
     const higher = comparison.price >= input.price ? { price: comparison.price } : { price: input.price };
     const lower = higher.price === comparison.price ? { price: input.price, result } : { price: comparison.price, result: comparison.result };
-    if (higher.price !== lower.price) {
+    // A condição de virada só faz sentido com clientes informados e quando o preço menor tem resultado a igualar.
+    if (higher.price !== lower.price && input.customers > 0 && !bothNegative) {
       const needed = customersToMatch(input, higher.price, lower.result.operatingResult);
       if (needed === null) {
         statements.push(`A ${formatCurrency(higher.price)}, a contribuição por cliente não é positiva, então o preço maior não empata com o menor.`);
+      } else if (needed <= 0) {
+        statements.push(
+          `A ${formatCurrency(lower.price)}, cada cliente reduz o resultado; com qualquer quantidade de clientes, ${formatCurrency(higher.price)} fica à frente.`,
+        );
       } else if (needed <= input.customers) {
         statements.push(
           `A conclusão muda se o preço maior afastar clientes: a ${formatCurrency(higher.price)} são necessários pelo menos ${clients(needed)} para igualar o resultado de ${formatCurrency(lower.price)} com ${clients(input.customers)}. Uma perda de mais de ${clients(input.customers - needed)} favorece o preço menor.`,

@@ -33,6 +33,15 @@ describe("sensibilidade (Passo 7): uma entrada por vez até zerar o resultado", 
     expect(mostSensitive(buildSensitivity(pdfExample))?.key).toBe("price");
   });
 
+  it("cenário desfavorável (preço R$ 10): custo e taxa não ganham limite negativo", () => {
+    const unfavorable = Object.fromEntries(buildSensitivity({ ...pdfExample, price: 10 }).map((item) => [item.key, item]));
+    expect(unfavorable.fixedCost.limit).toBeNull();
+    expect(unfavorable.variableCostPerCustomer.limit).toBeNull();
+    expect(unfavorable.taxRate.limit).toBeNull();
+    expectClose(unfavorable.price.limit, 44.44);
+    expect(mostSensitive(buildSensitivity({ ...pdfExample, price: 10 }))?.key).toBe("price");
+  });
+
   it("sem clientes, não existem limites de preço, custo variável e taxa", () => {
     const empty = Object.fromEntries(buildSensitivity({ ...pdfExample, customers: 0 }).map((item) => [item.key, item]));
     expect(empty.price.limit).toBeNull();

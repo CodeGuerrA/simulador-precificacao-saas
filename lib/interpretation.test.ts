@@ -49,6 +49,25 @@ describe("interpretação por regras explícitas (Passo 7)", () => {
     expect(plain(interpret(pdfExample, null).statements.join(" "))).not.toContain("favorecido");
   });
 
+  it("com os dois preços em prejuízo, avisa que nenhum cobre os custos e não calcula virada", () => {
+    const statements = plain(interpret({ ...pdfExample, price: 10 }, 12).statements.join(" "));
+    expect(statements).toContain("nenhum dos dois preços cobre os custos");
+    expect(statements).not.toContain("preço favorecido");
+    expect(statements).not.toContain("são necessários");
+  });
+
+  it("preço menor com contribuição negativa: nunca fala em quantidade negativa de clientes", () => {
+    const statements = plain(interpret({ ...pdfExample, price: 10 }, 60).statements.join(" "));
+    expect(statements).not.toMatch(/[−-]\d+ clientes/);
+    expect(statements).toContain("com qualquer quantidade de clientes, R$ 60,00 fica à frente");
+  });
+
+  it("sem clientes informados, não aparece condição de virada com 0 clientes", () => {
+    const statements = plain(interpret({ ...pdfExample, customers: 0 }, 60).statements.join(" "));
+    expect(statements).not.toContain("pelo menos 0");
+    expect(statements).not.toContain("perda de mais de 0");
+  });
+
   it("ressalva que o resultado não é lucro contábil e que a taxa é hipotética", () => {
     const caveats = interpret(pdfExample, 60).caveats.join(" ");
     expect(caveats).toContain("não o lucro contábil");

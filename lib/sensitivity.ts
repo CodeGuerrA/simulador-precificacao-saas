@@ -61,7 +61,11 @@ export function buildSensitivity(input: PricingInput): SensitivityLimit[] {
     },
   ];
 
-  return limits.map((item) => ({ ...item, changePercent: change(item.current, item.limit) }));
+  return limits.map((item) => {
+    // Custo e taxa não podem ser negativos: um limite abaixo de zero significa que nem com valor zero o resultado fecha.
+    const limit = item.direction === "max" && item.limit !== null && item.limit < 0 ? null : item.limit;
+    return { ...item, limit, changePercent: change(item.current, limit) };
+  });
 }
 
 /** Entrada com a menor folga até zerar o resultado: a premissa que mais influencia a decisão. */
