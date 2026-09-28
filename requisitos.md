@@ -77,8 +77,15 @@ Formato dos critérios: **Dado** (entrada) · **Quando** (ação) · **Então** 
 | O2.7 Tributo sobre o lucro (daria 900) | RF06 | V1 |
 | O2.8 Margem sobre custos (daria 11,11%) | RF07 | V1 |
 | O2.9 Arredondar para cima direto sobre o resultado decimal (erra 1 cliente em 30% dos casos exatos) | RF09 | V2 + teste de limite exato |
-| C1 Alíquota "real" inventada | RF01 (aviso de hipótese) | Revisão manual |
+| C1 Alíquota "real" inventada (p.5: a faixa dos slides não é regra universal) | RF01 (aviso de hipótese) | Revisão manual |
 | C2 Taxa sem virar fração (daria −49.000) | RF06 | V1 |
+| C3 Misturar valores anuais e mensais (p.5) | Convenções (tudo mensal) | Revisão manual |
+| C7 Confundir equilíbrio do mês com recuperação do investimento (p.5) | Limites do modelo | Revisão manual |
+| C8 Não declarar moeda, período, significado dos campos e origem dos dados (p.5) | RF01 | Revisão manual |
 | C9 Arredondar no meio do cálculo | RF16 | V1 |
 | I1 Campo vazio vira 0 | RF03 | V3 |
 | I2 "1.000,50" vira 1 | RF05 | V3 |
+| A12 Exportar só as saídas (p.8 pede entradas, premissas e saídas) | RF16 | Teste de exportação |
+| A13 Frases de certeza sobre o futuro na interpretação (p.8) | RF15 | Teste que proíbe palavras de certeza |
+| A14 Sensibilidade mudando várias entradas ao mesmo tempo (p.8: uma por vez) | RF14 | Teste de sensibilidade |
+| A15 Serviços externos fora do escopo (p.7) | RNF01 | Revisão manual |

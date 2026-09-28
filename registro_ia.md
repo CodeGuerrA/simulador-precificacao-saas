@@ -41,7 +41,7 @@
 | Integrante | Carlos |
 | Objetivo | Definir a tecnologia do app |
 | Prompt utilizado | Resposta à pergunta da IA sobre tecnologia: "React + Vite"; depois: "faca em next.js mas simples" |
-| Arquivos alterados | `PRODUCT.md`, `requisitos.md` (RNF01 e RNF02) |
+| Arquivos alterados | `requisitos.md` (RNF01 e RNF02) |
 | Sugestão da IA | HTML/CSS/JS puro, abrindo o `index.html` sem instalar nada |
 | Verificação realizada | A equipe comparou com o enunciado (p.5: pode usar outra tecnologia que já domine, desde que rode localmente com dependências documentadas) |
 | Decisão humana | **Rejeitada.** A equipe escolheu Next.js na forma mais simples (uma página, sem API nem banco) |
