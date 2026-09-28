@@ -131,4 +131,5 @@ Detalhes, unidades e casos-limite em [modelo_calculos.md](modelo_calculos.md).
 | `registro_ia.md` | Interações com a IA e decisões da equipe |
 | `evidencias_testes.md` | Verificações na tela e testes automatizados |
 | `relatorio_decisao.md` | Relatório de decisão (até duas páginas) |
-| `referencias/` | Enunciado da atividade |
+
+As páginas citadas nos documentos (p.2, p.3 etc.) são do enunciado da atividade, fornecido pelo professor e não incluído neste repositório.
