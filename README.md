@@ -65,7 +65,7 @@ npm start
 npm test
 ```
 
-Roda 108 testes automatizados das funções de cálculo com o Vitest. As verificações feitas na tela, com entrada, resultado esperado, resultado obtido e situação, estão em [evidencias_testes.md](evidencias_testes.md).
+Roda 112 testes automatizados das funções de cálculo com o Vitest. As verificações feitas na tela, com entrada, resultado esperado, resultado obtido e situação, estão em [evidencias_testes.md](evidencias_testes.md).
 
 ## Exemplo de uso
 

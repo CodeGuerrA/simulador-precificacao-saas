@@ -27,7 +27,7 @@ Comando:
 npm test
 ```
 
-Resultado em 28/09/2026: **12 arquivos, 108 testes aprovados.**
+Resultado em 28/09/2026: **12 arquivos, 112 testes aprovados.**
 
 | Arquivo | O que verifica |
 |---|---|
