@@ -25,7 +25,7 @@ Também exporta tudo em CSV ou JSON.
 | Node.js | 20.9 ou superior (usado: 24.18) |
 | npm | o que acompanha o Node |
 
-Não precisa de banco de dados, login, chave de API nem internet depois da instalação.
+Não precisa de banco de dados, login nem chave de API.
 
 ## Como rodar
 
