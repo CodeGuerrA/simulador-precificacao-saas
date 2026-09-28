@@ -22,27 +22,21 @@
   letter-spacing: 0;
 }
 
-.provenance {
+.about {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-6);
   margin: 0;
   font-size: var(--font-size-small);
 }
 
-.provenance dt {
+.about dt {
   font-weight: 600;
 }
 
-.provenance dd {
+.about dd {
   margin: var(--space-1) 0 0;
   color: var(--color-on-pen-muted);
-}
-
-@media (max-width: 1023px) {
-  .provenance {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 640px) {
@@ -50,7 +44,7 @@
     padding: var(--space-8) var(--space-4);
   }
 
-  .provenance {
+  .about {
     grid-template-columns: 1fr;
   }
 }
