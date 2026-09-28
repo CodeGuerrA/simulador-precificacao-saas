@@ -1,0 +1,11 @@
+# dependências e build
+node_modules/
+.next/
+out/
+coverage/
+
+# sistema
+.DS_Store
+
+# ambiente
+.env*
