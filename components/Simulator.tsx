@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { buildSimulationExport } from "@/lib/export";
+import { finalizeMask, type InputMask } from "@/lib/inputMask";
 import { buildLedger, changedLedgerKeys, type LedgerKey, type LedgerLine } from "@/lib/ledger";
 import { calculatePricing, type PricingInput, type PricingResult } from "@/lib/pricing";
 import { validateComparisonPrice, validatePricingForm, type PricingField, type PricingFormValues } from "@/lib/validation";
@@ -32,6 +33,24 @@ type SimulatorState = {
 };
 
 const FIELD_ORDER: FormField[] = ["fixedCost", "variableCostPerCustomer", "price", "customers", "taxRatePercent", "comparisonPrice"];
+
+const FIELD_MASKS: Record<FormField, InputMask> = {
+  fixedCost: "money",
+  variableCostPerCustomer: "money",
+  price: "money",
+  customers: "integer",
+  taxRatePercent: "percent",
+  comparisonPrice: "money",
+};
+
+/** Completa os campos de dinheiro com duas casas ("10.000" → "10.000,00"). */
+function finalizeFields(form: FormState, fields: FormField[]): FormState {
+  const next = { ...form };
+  for (const field of fields) {
+    next[field] = finalizeMask(form[field], FIELD_MASKS[field]);
+  }
+  return next;
+}
 
 const EMPTY_FORM: FormState = {
   fixedCost: "",
@@ -95,12 +114,16 @@ export function Simulator() {
   }
 
   function handleBlur(field: FormField) {
-    commit(form, new Set([...touched, field]));
+    const finalized = finalizeFields(form, [field]);
+    setForm(finalized);
+    commit(finalized, new Set([...touched, field]));
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const errors = commit(form, new Set(FIELD_ORDER));
+    const finalized = finalizeFields(form, FIELD_ORDER);
+    setForm(finalized);
+    const errors = commit(finalized, new Set(FIELD_ORDER));
     const firstInvalid = FIELD_ORDER.find((field) => errors[field]);
     if (firstInvalid) {
       document.getElementById(firstInvalid)?.focus();
@@ -154,7 +177,7 @@ export function Simulator() {
               id="fixedCost"
               label="Custo fixo mensal"
               prefix="R$"
-              inputMode="decimal"
+              mask="money"
               placeholder="0,00"
               helper="Equipe, ferramentas e gastos que não mudam com o número de clientes."
               value={form.fixedCost}
@@ -166,7 +189,7 @@ export function Simulator() {
               id="variableCostPerCustomer"
               label="Custo variável por cliente"
               prefix="R$"
-              inputMode="decimal"
+              mask="money"
               placeholder="0,00"
               helper="Infraestrutura e suporte de cada cliente, por mês."
               value={form.variableCostPerCustomer}
@@ -182,7 +205,7 @@ export function Simulator() {
               id="price"
               label="Preço mensal"
               prefix="R$"
-              inputMode="decimal"
+              mask="money"
               placeholder="0,00"
               helper="Valor cobrado de cada cliente, por mês."
               value={form.price}
@@ -194,7 +217,7 @@ export function Simulator() {
               id="customers"
               label="Clientes no mês"
               suffix="clientes"
-              inputMode="numeric"
+              mask="integer"
               placeholder="0"
               helper="Previsão de clientes pagantes no mês."
               value={form.customers}
@@ -210,7 +233,7 @@ export function Simulator() {
               id="taxRatePercent"
               label="Tributos sobre a receita"
               suffix="% ao mês"
-              inputMode="decimal"
+              mask="percent"
               placeholder="0"
               helper="Taxa hipotética para a simulação. Não é alíquota legal."
               value={form.taxRatePercent}
@@ -251,7 +274,7 @@ export function Simulator() {
             id="comparisonPrice"
             label="Segundo preço para comparar"
             prefix="R$"
-            inputMode="decimal"
+            mask="money"
             placeholder="0,00"
             helper="Valor cobrado de cada cliente, por mês."
             value={form.comparisonPrice}

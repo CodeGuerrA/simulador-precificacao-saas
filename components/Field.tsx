@@ -1,3 +1,7 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
+import { applyTypingMask, type InputMask } from "@/lib/inputMask";
 import { AlertIcon } from "./AlertIcon";
 import styles from "./Field.module.css";
 
@@ -10,7 +14,8 @@ type FieldProps = {
   prefix?: string;
   suffix?: string;
   error?: string;
-  inputMode: "decimal" | "numeric";
+  /** Formata enquanto digita: "10000" aparece como "10.000". */
+  mask: InputMask;
   onChange: (value: string) => void;
   onCommit: () => void;
 };
@@ -48,9 +53,20 @@ export function TextAreaField({ id, label, value, helper, placeholder, onChange 
   );
 }
 
-export function Field({ id, label, value, helper, placeholder, prefix, suffix, error, inputMode, onChange, onCommit }: FieldProps) {
+export function Field({ id, label, value, helper, placeholder, prefix, suffix, error, mask, onChange, onCommit }: FieldProps) {
   const helperId = `${id}-ajuda`;
   const errorId = `${id}-erro`;
+  const inputRef = useRef<HTMLInputElement>(null);
+  const pendingCaret = useRef<number | null>(null);
+
+  // Depois que a máscara insere ou remove pontos, devolve o cursor para logo após o que foi digitado.
+  useLayoutEffect(() => {
+    const input = inputRef.current;
+    if (input && pendingCaret.current !== null && document.activeElement === input) {
+      input.setSelectionRange(pendingCaret.current, pendingCaret.current);
+    }
+    pendingCaret.current = null;
+  });
 
   return (
     <div className={styles.field}>
@@ -64,18 +80,23 @@ export function Field({ id, label, value, helper, placeholder, prefix, suffix, e
           </span>
         )}
         <input
+          ref={inputRef}
           id={id}
           name={id}
           className={styles.input}
           type="text"
-          inputMode={inputMode}
+          inputMode={mask === "integer" ? "numeric" : "decimal"}
           autoComplete="off"
           spellCheck={false}
           value={value}
           placeholder={placeholder}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${errorId} ${helperId}` : helperId}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={(event) => {
+            const masked = applyTypingMask(event.target.value, event.target.selectionStart ?? event.target.value.length, mask);
+            pendingCaret.current = masked.caret;
+            onChange(masked.value);
+          }}
           onBlur={onCommit}
         />
         {suffix && (
