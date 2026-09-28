@@ -1,0 +1,104 @@
+/* Tokens da direção visual.
+   Contrastes verificados pela fórmula da WCAG em 28/09/2026. */
+:root {
+  --color-paper: #fcfcfb;
+  --color-surface: #ffffff;
+  --color-field: #f4f4f2;
+  --color-line: #e4e2e1;
+  --color-grid: #a8a5a3;
+  --color-placeholder: #6f6c6a;
+  --color-graphite: #55585b;
+  --color-ink: #1c1b1b;
+  --color-highlight: #ffe14d;
+  --color-series-b: #3e6fa3;
+  --color-positive: #1e6b3a;
+  --color-negative: #a8261b;
+  --color-warning: #7a4f00;
+
+  --font-size-answer: clamp(40px, 6vw, 56px);
+  --font-size-title: clamp(30px, 4vw, 40px);
+  --font-size-section: 26px;
+  --font-size-subtitle: 20px;
+  --font-size-body: 17px;
+  --font-size-small: 15px;
+  --font-size-caption: 13px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-small: 6px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+
+  --duration-micro: 120ms;
+  --duration-normal: 200ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+  --content-width: 1200px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--font-size-body);
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: var(--font-size-title);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--font-size-section);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--font-size-subtitle);
+}
+
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}

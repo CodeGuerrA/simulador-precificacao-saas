@@ -9,3 +9,9 @@ coverage/
 
 # ambiente
 .env*
+
+# next.js e typescript
+.vercel
+*.tsbuildinfo
+*.pem
+npm-debug.log*
