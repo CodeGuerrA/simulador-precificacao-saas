@@ -1,0 +1,223 @@
+{
+  "simulation": "Simulador de precificação SaaS (dados fictícios)",
+  "generatedAt": "2026-09-28T22:56:37.282Z",
+  "inputs": {
+    "fixedCost": 3000,
+    "variableCostPerCustomer": 10,
+    "price": 50,
+    "customers": 100,
+    "taxRate": 0.1,
+    "taxRatePercent": 10,
+    "perceivedBenefit": "Tarefas da equipe organizadas em um só lugar (texto de exemplo).",
+    "comparisonPrice": 60
+  },
+  "assumptions": [
+    "Valores mensais, em reais (R$).",
+    "Taxa de tributos hipotética, aplicada sobre a receita; não é alíquota legal.",
+    "O resultado é o saldo operacional do modelo didático, não o lucro contábil.",
+    "Equilíbrio: menor quantidade inteira de clientes com resultado maior ou igual a zero.",
+    "Com custo fixo zero, o equilíbrio é 0 cliente (premissa da equipe).",
+    "Cenários: só a quantidade de clientes varia (−30%, informado, +30%).",
+    "Sensibilidade: uma entrada por vez, com as outras como informadas.",
+    "Dados fictícios: simulação."
+  ],
+  "outputs": {
+    "informedPrice": {
+      "price": 50,
+      "result": {
+        "revenue": 5000,
+        "taxes": 500,
+        "variableCost": 1000,
+        "totalCost": 4000,
+        "operatingResult": 500,
+        "marginPercent": 10,
+        "unitContribution": 35,
+        "breakEven": {
+          "kind": "customers",
+          "customers": 86
+        },
+        "breakEvenPrice": 44.44444444444444
+      }
+    },
+    "comparisonPrice": {
+      "price": 60,
+      "result": {
+        "revenue": 6000,
+        "taxes": 600,
+        "variableCost": 1000,
+        "totalCost": 4000,
+        "operatingResult": 1400,
+        "marginPercent": 23.333333333333332,
+        "unitContribution": 44,
+        "breakEven": {
+          "kind": "customers",
+          "customers": 69
+        },
+        "breakEvenPrice": 44.44444444444444
+      }
+    },
+    "scenarios": [
+      {
+        "id": "pessimistic",
+        "label": "Pessimista",
+        "customersChangePercent": -30,
+        "customers": 70,
+        "informed": {
+          "revenue": 3500,
+          "taxes": 350,
+          "variableCost": 700,
+          "totalCost": 3700,
+          "operatingResult": -550,
+          "marginPercent": -15.714285714285714,
+          "unitContribution": 35,
+          "breakEven": {
+            "kind": "customers",
+            "customers": 86
+          },
+          "breakEvenPrice": 58.73015873015873
+        },
+        "comparison": {
+          "revenue": 4200,
+          "taxes": 420,
+          "variableCost": 700,
+          "totalCost": 3700,
+          "operatingResult": 80,
+          "marginPercent": 1.9047619047619047,
+          "unitContribution": 44,
+          "breakEven": {
+            "kind": "customers",
+            "customers": 69
+          },
+          "breakEvenPrice": 58.73015873015873
+        }
+      },
+      {
+        "id": "base",
+        "label": "Base",
+        "customersChangePercent": 0,
+        "customers": 100,
+        "informed": {
+          "revenue": 5000,
+          "taxes": 500,
+          "variableCost": 1000,
+          "totalCost": 4000,
+          "operatingResult": 500,
+          "marginPercent": 10,
+          "unitContribution": 35,
+          "breakEven": {
+            "kind": "customers",
+            "customers": 86
+          },
+          "breakEvenPrice": 44.44444444444444
+        },
+        "comparison": {
+          "revenue": 6000,
+          "taxes": 600,
+          "variableCost": 1000,
+          "totalCost": 4000,
+          "operatingResult": 1400,
+          "marginPercent": 23.333333333333332,
+          "unitContribution": 44,
+          "breakEven": {
+            "kind": "customers",
+            "customers": 69
+          },
+          "breakEvenPrice": 44.44444444444444
+        }
+      },
+      {
+        "id": "optimistic",
+        "label": "Otimista",
+        "customersChangePercent": 30,
+        "customers": 130,
+        "informed": {
+          "revenue": 6500,
+          "taxes": 650,
+          "variableCost": 1300,
+          "totalCost": 4300,
+          "operatingResult": 1550,
+          "marginPercent": 23.846153846153847,
+          "unitContribution": 35,
+          "breakEven": {
+            "kind": "customers",
+            "customers": 86
+          },
+          "breakEvenPrice": 36.75213675213675
+        },
+        "comparison": {
+          "revenue": 7800,
+          "taxes": 780,
+          "variableCost": 1300,
+          "totalCost": 4300,
+          "operatingResult": 2720,
+          "marginPercent": 34.87179487179487,
+          "unitContribution": 44,
+          "breakEven": {
+            "kind": "customers",
+            "customers": 69
+          },
+          "breakEvenPrice": 36.75213675213675
+        }
+      }
+    ],
+    "sensitivity": [
+      {
+        "key": "price",
+        "label": "Preço mensal",
+        "current": 50,
+        "limit": 44.44444444444444,
+        "direction": "min",
+        "changePercent": -11.111111111111112
+      },
+      {
+        "key": "customers",
+        "label": "Clientes no mês",
+        "current": 100,
+        "limit": 86,
+        "direction": "min",
+        "changePercent": -14
+      },
+      {
+        "key": "fixedCost",
+        "label": "Custo fixo mensal",
+        "current": 3000,
+        "limit": 3500,
+        "direction": "max",
+        "changePercent": 16.666666666666668
+      },
+      {
+        "key": "variableCostPerCustomer",
+        "label": "Custo variável por cliente",
+        "current": 10,
+        "limit": 15,
+        "direction": "max",
+        "changePercent": 50
+      },
+      {
+        "key": "taxRate",
+        "label": "Tributos sobre a receita",
+        "current": 0.1,
+        "limit": 0.19999999999999996,
+        "direction": "max",
+        "changePercent": 99.99999999999994
+      }
+    ]
+  },
+  "interpretation": {
+    "criterion": "Critério: maior resultado do mês com a quantidade de clientes informada. Empate: menor número de clientes para o equilíbrio.",
+    "statements": [
+      "Com 100 clientes a R$ 50,00, o resultado do mês é R$ 500,00 (equilíbrio a partir de 86 clientes).",
+      "Com os mesmos clientes a R$ 60,00, o resultado é R$ 1.400,00 (equilíbrio a partir de 69 clientes).",
+      "Pelo critério, o preço favorecido é R$ 60,00.",
+      "A conclusão muda se o preço maior afastar clientes: a R$ 60,00 são necessários pelo menos 80 clientes para igualar o resultado de R$ 50,00 com 100 clientes. Uma perda de mais de 20 clientes favorece o preço menor.",
+      "Nos cenários, com 70 clientes o resultado a R$ 50,00 seria −R$ 550,00; com 130 clientes, seria R$ 1.550,00.",
+      "Mantendo o resto como informado, a premissa com menor folga é preço mensal: uma queda de 11,11% zera o resultado."
+    ],
+    "caveats": [
+      "O resultado é o saldo operacional do modelo didático, não o lucro contábil.",
+      "A taxa de tributos de 10% é hipotética, não uma alíquota legal.",
+      "O modelo não considera cancelamentos, custo de aquisição de clientes nem mudanças de preço ao longo do tempo.",
+      "Os números descrevem as premissas informadas; outras premissas levam a outras conclusões."
+    ]
+  }
+}

@@ -98,6 +98,19 @@
 | Verificação realizada | Testado no navegador: 10000 digitado tecla a tecla aparece como 10.000 e vira 10.000,00 ao sair. A máscara de centavos (10000 → 100,00) foi descartada por confundir quem digita em reais |
 | Decisão humana | **Alterada:** campos formatam enquanto se digita |
 
+## 8. Passo 8 — revisão e preparação da entrega
+
+| Campo | Registro |
+|---|---|
+| Data | 28/09/2026 |
+| Integrante | Carlos |
+| Objetivo | Reunir as entregas pedidas no enunciado (p.10) |
+| Prompt utilizado | "quais sao as entregas? para o professor?" |
+| Arquivos alterados | `README.md`, `evidencias_testes.md`, `relatorio_decisao.md` e `dados/exportacao-exemplo.json` e `.csv` |
+| Sugestão da IA | README com instalação, execução, testes, indicadores, limitações e exemplo de uso; evidências com os valores lidos na tela; rascunho do relatório defendendo R$ 60,00 |
+| Verificação realizada | As 9 verificações foram feitas na aplicação rodando, e os arquivos exportados saíram dos próprios botões. Verificação humana: **pendente** — a equipe revisa o relatório e decide se mantém a alternativa defendida |
+| Decisão humana | **Pendente** |
+
 ---
 
 ## Modelo para as próximas interações

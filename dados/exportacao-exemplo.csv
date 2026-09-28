@@ -1,0 +1,62 @@
+﻿Seção;Campo;Valor;Unidade
+Entradas;Custo fixo;3000;R$ por mês
+Entradas;Custo variável por cliente;10;R$ por cliente por mês
+Entradas;Preço mensal;50;R$ por cliente por mês
+Entradas;Clientes;100;clientes no mês
+Entradas;Taxa hipotética de tributos;10;% da receita
+Entradas;Segundo preço para comparar;60;R$ por cliente por mês
+Entradas;Benefício percebido;Tarefas da equipe organizadas em um só lugar (texto de exemplo).;texto
+Premissas;Premissa;Valores mensais, em reais (R$).;
+Premissas;Premissa;"Taxa de tributos hipotética, aplicada sobre a receita; não é alíquota legal.";
+Premissas;Premissa;O resultado é o saldo operacional do modelo didático, não o lucro contábil.;
+Premissas;Premissa;Equilíbrio: menor quantidade inteira de clientes com resultado maior ou igual a zero.;
+Premissas;Premissa;Com custo fixo zero, o equilíbrio é 0 cliente (premissa da equipe).;
+Premissas;Premissa;Cenários: só a quantidade de clientes varia (−30%, informado, +30%).;
+Premissas;Premissa;Sensibilidade: uma entrada por vez, com as outras como informadas.;
+Premissas;Premissa;Dados fictícios: simulação.;
+Saídas (preço informado);Preço;50;R$ por cliente por mês
+Saídas (preço informado);Receita;5000;R$ por mês
+Saídas (preço informado);Tributos;500;R$ por mês
+Saídas (preço informado);Custo variável total;1000;R$ por mês
+Saídas (preço informado);Custo total (fixo + variável);4000;R$ por mês
+Saídas (preço informado);Resultado do mês;500;R$ por mês
+Saídas (preço informado);Margem;10;% da receita (vazio: sem receita)
+Saídas (preço informado);Contribuição por cliente;35;R$ por cliente por mês
+Saídas (preço informado);Clientes de equilíbrio;86;clientes
+Saídas (preço informado);Preço que zera o resultado;44,44444444444444;R$ por cliente por mês (vazio: não existe)
+Saídas (segundo preço);Preço;60;R$ por cliente por mês
+Saídas (segundo preço);Receita;6000;R$ por mês
+Saídas (segundo preço);Tributos;600;R$ por mês
+Saídas (segundo preço);Custo variável total;1000;R$ por mês
+Saídas (segundo preço);Custo total (fixo + variável);4000;R$ por mês
+Saídas (segundo preço);Resultado do mês;1400;R$ por mês
+Saídas (segundo preço);Margem;23,333333333333332;% da receita (vazio: sem receita)
+Saídas (segundo preço);Contribuição por cliente;44;R$ por cliente por mês
+Saídas (segundo preço);Clientes de equilíbrio;69;clientes
+Saídas (segundo preço);Preço que zera o resultado;44,44444444444444;R$ por cliente por mês (vazio: não existe)
+Cenários;Pessimista: clientes;70;clientes no mês
+Cenários;Pessimista: resultado ao preço informado;-550;R$ por mês
+Cenários;Pessimista: resultado ao segundo preço;80;R$ por mês
+Cenários;Base: clientes;100;clientes no mês
+Cenários;Base: resultado ao preço informado;500;R$ por mês
+Cenários;Base: resultado ao segundo preço;1400;R$ por mês
+Cenários;Otimista: clientes;130;clientes no mês
+Cenários;Otimista: resultado ao preço informado;1550;R$ por mês
+Cenários;Otimista: resultado ao segundo preço;2720;R$ por mês
+Sensibilidade;Preço mensal: limite que zera o resultado (mínimo);44,44444444444444;R$
+Sensibilidade;Clientes no mês: limite que zera o resultado (mínimo);86;clientes
+Sensibilidade;Custo fixo mensal: limite que zera o resultado (máximo);3500;R$
+Sensibilidade;Custo variável por cliente: limite que zera o resultado (máximo);15;R$
+Sensibilidade;Tributos sobre a receita: limite que zera o resultado (máximo);0,19999999999999996;fração da receita
+Interpretação;Critério;Critério: maior resultado do mês com a quantidade de clientes informada. Empate: menor número de clientes para o equilíbrio.;
+Interpretação;Conclusão;Com 100 clientes a R$ 50,00, o resultado do mês é R$ 500,00 (equilíbrio a partir de 86 clientes).;
+Interpretação;Conclusão;Com os mesmos clientes a R$ 60,00, o resultado é R$ 1.400,00 (equilíbrio a partir de 69 clientes).;
+Interpretação;Conclusão;Pelo critério, o preço favorecido é R$ 60,00.;
+Interpretação;Conclusão;A conclusão muda se o preço maior afastar clientes: a R$ 60,00 são necessários pelo menos 80 clientes para igualar o resultado de R$ 50,00 com 100 clientes. Uma perda de mais de 20 clientes favorece o preço menor.;
+Interpretação;Conclusão;"Nos cenários, com 70 clientes o resultado a R$ 50,00 seria −R$ 550,00; com 130 clientes, seria R$ 1.550,00.";
+Interpretação;Conclusão;Mantendo o resto como informado, a premissa com menor folga é preço mensal: uma queda de 11,11% zera o resultado.;
+Interpretação;Ressalva;O resultado é o saldo operacional do modelo didático, não o lucro contábil.;
+Interpretação;Ressalva;A taxa de tributos de 10% é hipotética, não uma alíquota legal.;
+Interpretação;Ressalva;O modelo não considera cancelamentos, custo de aquisição de clientes nem mudanças de preço ao longo do tempo.;
+Interpretação;Ressalva;"Os números descrevem as premissas informadas; outras premissas levam a outras conclusões.";
+Geração;Gerado em;2026-09-28T22:56:37.981Z;ISO 8601
