@@ -98,6 +98,8 @@ Números decimais no computador (em JavaScript e em Python) não representam 0,9
 
 **Regra adotada:** equilíbrio = `Math.ceil(round(custoFixo / contribuicao, 9 casas))`. Resultado executado: 0 erro em 569.888 casos, e o gabarito continua 86.
 
+No código: função `ceilSafely` em `lib/pricing.ts`. O teste automático repete a varredura em JavaScript (mais de 280 mil casos de equilíbrio exato) e o caso 9,80 / 0,98 → 10. Trocando `ceilSafely` por `Math.ceil` direto, esses 2 testes falham (verificado em 28/09/2026).
+
 Erros comprovados contra o gabarito:
 
 | Erro | Resultado errado | Gabarito |

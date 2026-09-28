@@ -46,6 +46,19 @@
 | Verificação realizada | A equipe comparou com o enunciado (p.5: pode usar outra tecnologia que já domine, desde que rode localmente com dependências documentadas) |
 | Decisão humana | **Rejeitada.** A equipe escolheu Next.js na forma mais simples (uma página, sem API nem banco) |
 
+## 4. Passo 5 — núcleo de cálculo e testes
+
+| Campo | Registro |
+|---|---|
+| Data | 28/09/2026 |
+| Integrante | Carlos |
+| Objetivo | Implementar as funções de cálculo, leitura de números e validação, com testes |
+| Prompt utilizado | "execute o plano da tarefa com base o pdf […]" |
+| Arquivos alterados | `lib/pricing.ts`, `lib/parse.ts`, `lib/validation.ts` e os testes `lib/*.test.ts` |
+| Sugestão da IA | Funções puras sem dependência da tela; leitura do formato brasileiro; taxa convertida de % para fração num único lugar; equilíbrio com arredondamento protegido |
+| Verificação realizada | 44 testes passando (`npm test`), lint e TypeScript sem erros. Teste de mutação: com `Math.ceil` direto, 2 testes falharam; com imposto sobre o lucro, 6 falharam. Verificação humana: **pendente**. O enunciado (p.7) pede que um integrante diferente de quem orientou o agente revise `calculatePricing` e explique entradas e saídas |
+| Decisão humana | **Pendente** |
+
 ---
 
 ## Modelo para as próximas interações
