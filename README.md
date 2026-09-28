@@ -67,5 +67,5 @@ Roda os testes automatizados das funções de cálculo com o Vitest.
 | 4 — estrutura e execução | Feito |
 | 5 — núcleo de cálculo e testes | Feito: 44 testes; falta a revisão de um integrante diferente de quem orientou a IA (p.7) |
 | 6 — interface | Feito: formulário, conta armada, comparação de preços, gráfico e exportação CSV/JSON |
-| 7 — cenários e interpretação | A fazer |
+| 7 — cenários e interpretação | Feito: três cenários, sensibilidade de uma entrada por vez e interpretação por regras |
 | 8 — revisão e entrega | A fazer |

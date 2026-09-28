@@ -3,15 +3,21 @@
 import { useState, type FormEvent } from "react";
 import { buildSimulationExport } from "@/lib/export";
 import { finalizeMask, type InputMask } from "@/lib/inputMask";
+import { buildInterpretation } from "@/lib/interpretation";
 import { buildLedger, changedLedgerKeys, type LedgerKey, type LedgerLine } from "@/lib/ledger";
 import { calculatePricing, type PricingInput, type PricingResult } from "@/lib/pricing";
+import { buildScenarios } from "@/lib/scenarios";
+import { buildSensitivity } from "@/lib/sensitivity";
 import { validateComparisonPrice, validatePricingForm, type PricingField, type PricingFormValues } from "@/lib/validation";
 import { buildVerdict } from "@/lib/verdict";
 import { ExportActions } from "./ExportActions";
 import { Field, TextAreaField } from "./Field";
+import { InterpretationPanel } from "./InterpretationPanel";
 import { Ledger } from "./Ledger";
 import { PriceComparison } from "./PriceComparison";
 import { ResultChart } from "./ResultChart";
+import { ScenarioTable } from "./ScenarioTable";
+import { SensitivityTable } from "./SensitivityTable";
 import styles from "./Simulator.module.css";
 
 type FormState = PricingFormValues & { comparisonPrice: string; perceivedBenefit: string };
@@ -139,16 +145,26 @@ export function Simulator() {
   const { calculation } = state;
   const lines = calculation?.lines ?? buildLedger(null, null);
   const verdict = calculation ? buildVerdict(calculation.input, calculation.result) : null;
-  const buildExport = calculation
-    ? () =>
-        buildSimulationExport({
-          input: calculation.input,
-          result: calculation.result,
-          perceivedBenefit: form.perceivedBenefit.trim(),
-          comparison: calculation.comparison,
-          generatedAt: new Date(),
-        })
+  const comparisonPrice = calculation?.comparison?.price ?? null;
+  const scenarios = calculation ? buildScenarios(calculation.input, comparisonPrice) : [];
+  const sensitivity = calculation ? buildSensitivity(calculation.input) : [];
+  const interpretation = calculation
+    ? buildInterpretation({ input: calculation.input, result: calculation.result, comparison: calculation.comparison, scenarios, sensitivity })
     : null;
+  const buildExport =
+    calculation && interpretation
+      ? () =>
+          buildSimulationExport({
+            input: calculation.input,
+            result: calculation.result,
+            perceivedBenefit: form.perceivedBenefit.trim(),
+            comparison: calculation.comparison,
+            scenarios,
+            sensitivity,
+            interpretation,
+            generatedAt: new Date(),
+          })
+      : null;
 
   return (
     <div className={styles.page}>
@@ -299,6 +315,41 @@ export function Simulator() {
           <ResultChart input={calculation.input} comparisonPrice={calculation.comparison?.price ?? null} />
         ) : (
           <p className={styles.emptyNote}>O gráfico aparece quando a conta do mês estiver calculada.</p>
+        )}
+      </section>
+
+      <section className={styles.section} aria-labelledby="cenarios-titulo">
+        <div className={styles.sectionHead}>
+          <h2 id="cenarios-titulo">Três cenários</h2>
+          <p className={styles.sectionLede}>Pessimista, base e otimista para os dois preços, mudando só a quantidade de clientes.</p>
+        </div>
+        {calculation ? (
+          <ScenarioTable scenarios={scenarios} informedPrice={calculation.input.price} comparisonPrice={comparisonPrice} />
+        ) : (
+          <p className={styles.emptyNote}>Os cenários aparecem quando a conta do mês estiver calculada.</p>
+        )}
+      </section>
+
+      <section className={styles.section} aria-labelledby="sensibilidade-titulo">
+        <div className={styles.sectionHead}>
+          <h2 id="sensibilidade-titulo">Sensibilidade: uma entrada por vez</h2>
+          <p className={styles.sectionLede}>Até onde cada premissa pode ir, sozinha, antes de o resultado do mês chegar a zero.</p>
+        </div>
+        {calculation ? (
+          <SensitivityTable limits={sensitivity} />
+        ) : (
+          <p className={styles.emptyNote}>A sensibilidade aparece quando a conta do mês estiver calculada.</p>
+        )}
+      </section>
+
+      <section className={styles.section} aria-labelledby="interpretacao-titulo">
+        <div className={styles.sectionHead}>
+          <h2 id="interpretacao-titulo">O que os números dizem</h2>
+        </div>
+        {interpretation ? (
+          <InterpretationPanel interpretation={interpretation} />
+        ) : (
+          <p className={styles.emptyNote}>A interpretação aparece quando a conta do mês estiver calculada.</p>
         )}
       </section>
 

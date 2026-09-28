@@ -1,4 +1,7 @@
+import type { Interpretation } from "./interpretation";
 import type { PricingInput, PricingResult } from "./pricing";
+import type { ScenarioResult } from "./scenarios";
+import type { SensitivityLimit } from "./sensitivity";
 
 /**
  * Exportação exigida pelo enunciado (p.8): entradas, premissas e saídas, em CSV ou JSON.
@@ -11,6 +14,8 @@ export const EXPORT_ASSUMPTIONS = [
   "O resultado é o saldo operacional do modelo didático, não o lucro contábil.",
   "Equilíbrio: menor quantidade inteira de clientes com resultado maior ou igual a zero.",
   "Com custo fixo zero, o equilíbrio é 0 cliente (premissa da equipe).",
+  "Cenários: só a quantidade de clientes varia (−30%, informado, +30%).",
+  "Sensibilidade: uma entrada por vez, com as outras como informadas.",
   "Dados fictícios: simulação.",
 ] as const;
 
@@ -27,7 +32,10 @@ export type SimulationExport = {
   outputs: {
     informedPrice: PriceScenarioExport;
     comparisonPrice: PriceScenarioExport | null;
+    scenarios: ScenarioResult[];
+    sensitivity: SensitivityLimit[];
   };
+  interpretation: Interpretation;
 };
 
 export function buildSimulationExport(params: {
@@ -35,9 +43,12 @@ export function buildSimulationExport(params: {
   result: PricingResult;
   perceivedBenefit: string;
   comparison: PriceScenarioExport | null;
+  scenarios: ScenarioResult[];
+  sensitivity: SensitivityLimit[];
+  interpretation: Interpretation;
   generatedAt: Date;
 }): SimulationExport {
-  const { input, result, perceivedBenefit, comparison, generatedAt } = params;
+  const { input, result, perceivedBenefit, comparison, scenarios, sensitivity, interpretation, generatedAt } = params;
   return {
     simulation: "Simulador de precificação SaaS (dados fictícios)",
     generatedAt: generatedAt.toISOString(),
@@ -51,7 +62,10 @@ export function buildSimulationExport(params: {
     outputs: {
       informedPrice: { price: input.price, result },
       comparisonPrice: comparison,
+      scenarios,
+      sensitivity,
     },
+    interpretation,
   };
 }
 
@@ -105,6 +119,22 @@ export function toCsv(data: SimulationExport): string {
     ...data.assumptions.map((assumption) => ["Premissas", "Premissa", assumption, ""]),
     ...resultRows("Saídas (preço informado)", data.outputs.informedPrice),
     ...(data.outputs.comparisonPrice ? resultRows("Saídas (segundo preço)", data.outputs.comparisonPrice) : []),
+    ...data.outputs.scenarios.flatMap((scenario) => [
+      ["Cenários", `${scenario.label}: clientes`, csvNumber(scenario.customers), "clientes no mês"],
+      ["Cenários", `${scenario.label}: resultado ao preço informado`, csvNumber(scenario.informed.operatingResult), "R$ por mês"],
+      ...(scenario.comparison
+        ? [["Cenários", `${scenario.label}: resultado ao segundo preço`, csvNumber(scenario.comparison.operatingResult), "R$ por mês"]]
+        : []),
+    ]),
+    ...data.outputs.sensitivity.map((item) => [
+      "Sensibilidade",
+      `${item.label}: limite que zera o resultado (${item.direction === "min" ? "mínimo" : "máximo"})`,
+      csvNumber(item.limit),
+      item.key === "taxRate" ? "fração da receita" : item.key === "customers" ? "clientes" : "R$",
+    ]),
+    ["Interpretação", "Critério", data.interpretation.criterion, ""],
+    ...data.interpretation.statements.map((statement) => ["Interpretação", "Conclusão", statement, ""]),
+    ...data.interpretation.caveats.map((caveat) => ["Interpretação", "Ressalva", caveat, ""]),
     ["Geração", "Gerado em", data.generatedAt, "ISO 8601"],
   ];
   return rows.map((row) => row.map(csvText).join(CSV_SEPARATOR)).join("\n");

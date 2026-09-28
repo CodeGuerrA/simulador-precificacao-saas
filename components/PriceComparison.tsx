@@ -1,7 +1,7 @@
 import { buildLedger, type LedgerKey } from "@/lib/ledger";
 import { formatCurrency } from "@/lib/format";
 import type { PricingInput, PricingResult } from "@/lib/pricing";
-import styles from "./PriceComparison.module.css";
+import styles from "./DataTable.module.css";
 
 const COMPARED_KEYS: LedgerKey[] = ["revenue", "taxes", "operatingResult", "margin", "unitContribution", "breakEven"];
 

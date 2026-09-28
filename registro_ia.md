@@ -72,6 +72,32 @@
 | Verificação realizada | Carlos reprovou a cor do painel. A IA pesquisou novas referências (Wise, Stripe, Remote) e trocou para azul caneta. Conferido em prints no computador e no celular (vazio, exemplo, erro, sem equilíbrio), 71 testes, detector de padrões de IA sem achados, console sem erros e Lighthouse com acessibilidade 100 |
 | Decisão humana | **Alterada:** painel em azul caneta com marca-texto amarelo |
 
+## 6. Passo 7 — cenários, sensibilidade e interpretação
+
+| Campo | Registro |
+|---|---|
+| Data | 28/09/2026 |
+| Integrante | Carlos |
+| Objetivo | Comparar três cenários, variar uma entrada por vez e explicar a decisão com regras explícitas |
+| Prompt utilizado | "so precisa funcionar e atender oq o professor quer […]" |
+| Arquivos alterados | `lib/scenarios.ts`, `lib/sensitivity.ts`, `lib/interpretation.ts`, componentes das três seções, `lib/export.ts` e testes |
+| Sugestão da IA | Cenários variando só os clientes (−30%, informado, +30%); limite de cada entrada que zera o resultado; interpretação com critério, preço favorecido e condição de virada (a R$ 60 são necessários ao menos 80 clientes para igualar R$ 50 com 100) |
+| Verificação realizada | 108 testes, entre eles um que proíbe palavras de certeza na interpretação. Valores conferidos contra a fórmula: cenários −550 / 500 / 1.550 (R$ 50) e 80 / 1.400 / 2.720 (R$ 60). Verificação humana: **pendente** — a equipe decide se mantém os ±30% ou troca a premissa |
+| Decisão humana | **Pendente** |
+
+## 7. Formatação dos valores ao digitar ← pedido da equipe
+
+| Campo | Registro |
+|---|---|
+| Data | 28/09/2026 |
+| Integrante | Carlos |
+| Objetivo | Mostrar a pontuação brasileira enquanto se digita |
+| Prompt utilizado | "arrume para quando eu digitar exemplo custo digito 10000 ele coloca a pontuacao correto para mim" |
+| Arquivos alterados | `lib/inputMask.ts`, `components/Field.tsx`, `components/Simulator.tsx` e testes |
+| Sugestão da IA (antes) | Campo aceitava "10000" sem pontuação e só o cálculo interpretava o formato |
+| Verificação realizada | Testado no navegador: 10000 digitado tecla a tecla aparece como 10.000 e vira 10.000,00 ao sair. A máscara de centavos (10000 → 100,00) foi descartada por confundir quem digita em reais |
+| Decisão humana | **Alterada:** campos formatam enquanto se digita |
+
 ---
 
 ## Modelo para as próximas interações
