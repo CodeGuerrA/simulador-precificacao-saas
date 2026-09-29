@@ -7,20 +7,7 @@
 
 ---
 
-## 1. Escolha da opção
-
-| Campo | Registro |
-|---|---|
-| Data | 28/09/2026 |
-| Integrante | Carlos |
-| Objetivo | Escolher a opção com menor risco de erro de cálculo |
-| Prompt utilizado | "quais das opcoes e a melhor pra fazer?" |
-| Arquivos alterados | — |
-| Sugestão da IA | Opção 2: menos entradas, sem série no tempo, gabarito completo e nenhuma ambiguidade do PDF afeta essa opção |
-| Verificação realizada | Critérios de avaliação conferidos no PDF (p.10–11): nenhum pontua dificuldade |
-| Decisão humana | **Aceita:** Opção 2 |
-
-## 2. Passos 1 a 3 — problema, requisitos e modelo de cálculos
+## 1. Passos 1 a 3 — problema, requisitos e modelo de cálculos
 
 | Campo | Registro |
 |---|---|
@@ -33,7 +20,7 @@
 | Verificação realizada | A IA testou `Math.ceil` direto em 284.944 casos (errou em 87.306) e a correção (0 erro). Verificação humana: em 29/09/2026, Carlos refez o caso do enunciado na calculadora (seção 8 do `modelo_calculos.md`), com as fórmulas passadas uma de cada vez e sem ver os resultados antes. Os seis valores coincidiram com a seção 5, a p.3 e a aplicação |
 | Decisão humana | **Aceita** (29/09/2026): o modelo de cálculos fica como está, conferido na calculadora sem divergências |
 
-## 3. Escolha da tecnologia ← sugestão rejeitada pela equipe
+## 2. Escolha da tecnologia ← sugestão rejeitada pela equipe
 
 | Campo | Registro |
 |---|---|
@@ -46,7 +33,7 @@
 | Verificação realizada | A equipe comparou com o enunciado (p.5: pode usar outra tecnologia que já domine, desde que rode localmente com dependências documentadas) |
 | Decisão humana | **Rejeitada.** A equipe escolheu Next.js na forma mais simples (uma página, sem API nem banco) |
 
-## 4. Passo 5 — núcleo de cálculo e testes
+## 3. Passo 5 — núcleo de cálculo e testes
 
 | Campo | Registro |
 |---|---|
@@ -59,7 +46,7 @@
 | Verificação realizada | 44 testes passando (`npm test`), lint e TypeScript sem erros. Teste de mutação: com `Math.ceil` direto, 2 testes falharam; com imposto sobre o lucro, 6 falharam. Revisão humana (p.7): em 29/09/2026, Yuri Dourado e Guilherme Rubatto, que não orientaram o agente, revisaram `calculatePricing` e confirmaram as entradas (custo fixo, custo variável por cliente, preço, clientes e taxa como fração) e as saídas (receita, tributos, custos, resultado, margem, contribuição, equilíbrio e preço que zera o resultado). A confirmação foi dada no grupo da equipe |
 | Decisão humana | **Aceita** (29/09/2026): a função fica como está, revisada por Yuri Dourado e Guilherme Rubatto |
 
-## 5. Passo 6 — interface ← sugestão alterada pela equipe
+## 4. Passo 6 — interface ← sugestão alterada pela equipe
 
 | Campo | Registro |
 |---|---|
@@ -72,7 +59,7 @@
 | Verificação realizada | Carlos reprovou a cor do painel. A IA pesquisou novas referências (Wise, Stripe, Remote) e trocou para azul caneta. Conferido em prints no computador e no celular (vazio, exemplo, erro, sem equilíbrio), 71 testes, detector de padrões de IA sem achados, console sem erros e Lighthouse com acessibilidade 100 |
 | Decisão humana | **Alterada:** painel em azul caneta com marca-texto amarelo |
 
-## 6. Passo 7 — cenários, sensibilidade e interpretação
+## 5. Passo 7 — cenários, sensibilidade e interpretação
 
 | Campo | Registro |
 |---|---|
@@ -85,7 +72,7 @@
 | Verificação realizada | 108 testes, entre eles um que proíbe palavras de certeza na interpretação. Valores conferidos contra a fórmula: cenários −550 / 500 / 1.550 (R$ 50) e 80 / 1.400 / 2.720 (R$ 60). Em 29/09/2026, Carlos avaliou manter ou trocar a variação de ±30% |
 | Decisão humana | **Aceita** (29/09/2026): a equipe mantém os cenários variando só a quantidade de clientes em −30%, informado e +30%. Assim cada cenário mostra o efeito de uma coisa só, a perda ou o ganho de clientes |
 
-## 7. Formatação dos valores ao digitar ← pedido da equipe
+## 6. Formatação dos valores ao digitar ← pedido da equipe
 
 | Campo | Registro |
 |---|---|
@@ -98,7 +85,7 @@
 | Verificação realizada | Testado no navegador: 10000 digitado tecla a tecla aparece como 10.000 e vira 10.000,00 ao sair. A máscara de centavos (10000 → 100,00) foi descartada por confundir quem digita em reais |
 | Decisão humana | **Alterada:** campos formatam enquanto se digita |
 
-## 8. Passo 8 — revisão e preparação da entrega
+## 7. Passo 8 — revisão e preparação da entrega
 
 | Campo | Registro |
 |---|---|
@@ -111,7 +98,7 @@
 | Verificação realizada | As 9 verificações foram feitas na aplicação rodando, e os arquivos exportados saíram dos próprios botões. Em 29/09/2026, o relatório foi revisado: a redação foi reescrita sem mudar números nem conclusões, e a versão em PDF, com 2 páginas, foi enviada aos integrantes |
 | Decisão humana | **Aceita** (29/09/2026): a equipe mantém a defesa de R$ 60,00, com o risco de o preço maior afastar clientes e a condição de virada em 80 clientes |
 
-## 9. Rodapé da interface ← sugestão alterada pela equipe
+## 8. Rodapé da interface ← sugestão alterada pela equipe
 
 | Campo | Registro |
 |---|---|
