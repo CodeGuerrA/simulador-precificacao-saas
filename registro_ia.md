@@ -56,8 +56,8 @@
 | Prompt utilizado | "execute o plano da tarefa com base o pdf […]" |
 | Arquivos alterados | `lib/pricing.ts`, `lib/parse.ts`, `lib/validation.ts` e os testes `lib/*.test.ts` |
 | Sugestão da IA | Funções puras sem dependência da tela; leitura do formato brasileiro; taxa convertida de % para fração num único lugar; equilíbrio com arredondamento protegido |
-| Verificação realizada | 44 testes passando (`npm test`), lint e TypeScript sem erros. Teste de mutação: com `Math.ceil` direto, 2 testes falharam; com imposto sobre o lucro, 6 falharam. Verificação humana: **pendente**. O enunciado (p.7) pede que um integrante diferente de quem orientou o agente revise `calculatePricing` e explique entradas e saídas |
-| Decisão humana | **Pendente** |
+| Verificação realizada | 44 testes passando (`npm test`), lint e TypeScript sem erros. Teste de mutação: com `Math.ceil` direto, 2 testes falharam; com imposto sobre o lucro, 6 falharam. Revisão humana (p.7): em 29/09/2026, Yuri Dourado e Guilherme Rubatto, que não orientaram o agente, revisaram `calculatePricing` e confirmaram as entradas (custo fixo, custo variável por cliente, preço, clientes e taxa como fração) e as saídas (receita, tributos, custos, resultado, margem, contribuição, equilíbrio e preço que zera o resultado). A confirmação foi dada no grupo da equipe |
+| Decisão humana | **Aceita** (29/09/2026): a função fica como está, revisada por Yuri Dourado e Guilherme Rubatto |
 
 ## 5. Passo 6 — interface ← sugestão alterada pela equipe
 
