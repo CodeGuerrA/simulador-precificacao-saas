@@ -30,8 +30,8 @@
 | Prompt utilizado | "execute o plano da tarefa com base o pdf […]" |
 | Arquivos alterados | `problema.md`, `requisitos.md`, `modelo_calculos.md`, `registro_ia.md` (criados) |
 | Sugestão da IA | Modelo com tributo sobre a receita, margem sobre a receita e equilíbrio com arredondamento para cima protegido contra erro de ponto flutuante |
-| Verificação realizada | A IA testou `Math.ceil` direto em 284.944 casos (errou em 87.306) e a correção (0 erro). Verificação humana: **pendente — seção 8 do `modelo_calculos.md`** |
-| Decisão humana | **Pendente** |
+| Verificação realizada | A IA testou `Math.ceil` direto em 284.944 casos (errou em 87.306) e a correção (0 erro). Verificação humana: em 29/09/2026, Carlos refez o caso do enunciado na calculadora (seção 8 do `modelo_calculos.md`), com as fórmulas passadas uma de cada vez e sem ver os resultados antes. Os seis valores coincidiram com a seção 5, a p.3 e a aplicação |
+| Decisão humana | **Aceita** (29/09/2026): o modelo de cálculos fica como está, conferido na calculadora sem divergências |
 
 ## 3. Escolha da tecnologia ← sugestão rejeitada pela equipe
 

@@ -63,4 +63,4 @@ Os dois trazem entradas, premissas, saídas dos dois preços, cenários, sensibi
 
 ## 4. Conferência independente da equipe
 
-A solução à mão do caso do enunciado fica na seção 8 do `modelo_calculos.md` (situação: **pendente**).
+A solução do caso do enunciado na calculadora está na seção 8 do `modelo_calculos.md`: feita por Carlos Garcia em 29/09/2026. Receita R$ 5.000,00, tributos R$ 500,00, resultado R$ 500,00, margem 10%, contribuição R$ 35,00 e equilíbrio 86 clientes (situação: **Aprovado**, sem divergências).

@@ -1,7 +1,7 @@
 # Passo 3 — Modelo de cálculos
 
 > **Opção 2 — Simulador de precificação de um SaaS.** Base: enunciado p.2–3, p.5 e p.10; Aula 4.
-> **Status:** modelo gerado com IA. **Falta a solução independente da equipe (seção 8)**: sem ela, não se avança para o código.
+> **Status:** modelo gerado com IA e conferido pela equipe na calculadora em 29/09/2026 (seção 8).
 
 ## 1. Variáveis
 
@@ -116,13 +116,14 @@ Erros comprovados contra o gabarito:
 
 | Indicador | Valor obtido pela equipe | Confere com a seção 5? |
 |---|---|---|
-| Receita | | |
-| Tributos | | |
-| Resultado | | |
-| Margem | | |
-| Contribuição por cliente | | |
-| Clientes de equilíbrio | | |
+| Receita | 50 × 100 = R$ 5.000,00 | Sim |
+| Tributos | 5.000 × 0,10 = R$ 500,00 | Sim |
+| Resultado | 5.000 − 3.000 − 1.000 − 500 = R$ 500,00 | Sim |
+| Margem | 500 ÷ 5.000 × 100 = 10% | Sim |
+| Contribuição por cliente | 50 × 0,90 − 10 = R$ 35,00 | Sim |
+| Clientes de equilíbrio | 3.000 ÷ 35 = 85,71, arredondado para cima = 86 | Sim |
 
-- Resolvido por: ______________________ Data: ___/___/2026
-- Ferramenta usada: ( ) à mão ( ) calculadora ( ) planilha
-- Divergências encontradas e causa: ______________________
+- Resolvido por: Carlos Garcia. Data: 29/09/2026
+- Ferramenta usada: ( ) à mão (x) calculadora ( ) planilha
+- Como foi feito: o agente passou as fórmulas do enunciado (p.2) uma de cada vez, sem mostrar os resultados; Carlos digitou cada conta na calculadora do celular e só depois comparou com a seção 5, com o teste de referência do enunciado (p.3) e com a tela da aplicação.
+- Divergências encontradas e causa: nenhuma. Os seis valores coincidem com a seção 5, com a p.3 e com a aplicação.
