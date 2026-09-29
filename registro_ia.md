@@ -82,8 +82,8 @@
 | Prompt utilizado | "so precisa funcionar e atender oq o professor quer […]" |
 | Arquivos alterados | `lib/scenarios.ts`, `lib/sensitivity.ts`, `lib/interpretation.ts`, componentes das três seções, `lib/export.ts` e testes |
 | Sugestão da IA | Cenários variando só os clientes (−30%, informado, +30%); limite de cada entrada que zera o resultado; interpretação com critério, preço favorecido e condição de virada (a R$ 60 são necessários ao menos 80 clientes para igualar R$ 50 com 100) |
-| Verificação realizada | 108 testes, entre eles um que proíbe palavras de certeza na interpretação. Valores conferidos contra a fórmula: cenários −550 / 500 / 1.550 (R$ 50) e 80 / 1.400 / 2.720 (R$ 60). Verificação humana: **pendente** — a equipe decide se mantém os ±30% ou troca a premissa |
-| Decisão humana | **Pendente** |
+| Verificação realizada | 108 testes, entre eles um que proíbe palavras de certeza na interpretação. Valores conferidos contra a fórmula: cenários −550 / 500 / 1.550 (R$ 50) e 80 / 1.400 / 2.720 (R$ 60). Em 29/09/2026, Carlos avaliou manter ou trocar a variação de ±30% |
+| Decisão humana | **Aceita** (29/09/2026): a equipe mantém os cenários variando só a quantidade de clientes em −30%, informado e +30%. Assim cada cenário mostra o efeito de uma coisa só, a perda ou o ganho de clientes |
 
 ## 7. Formatação dos valores ao digitar ← pedido da equipe
 
@@ -108,8 +108,21 @@
 | Prompt utilizado | "quais sao as entregas? para o professor?" |
 | Arquivos alterados | `README.md`, `evidencias_testes.md`, `relatorio_decisao.md` e `dados/exportacao-exemplo.json` e `.csv` |
 | Sugestão da IA | README com instalação, execução, testes, indicadores, limitações e exemplo de uso; evidências com os valores lidos na tela; rascunho do relatório defendendo R$ 60,00 |
-| Verificação realizada | As 9 verificações foram feitas na aplicação rodando, e os arquivos exportados saíram dos próprios botões. Verificação humana: **pendente** — a equipe revisa o relatório e decide se mantém a alternativa defendida |
-| Decisão humana | **Pendente** |
+| Verificação realizada | As 9 verificações foram feitas na aplicação rodando, e os arquivos exportados saíram dos próprios botões. Em 29/09/2026, o relatório foi revisado: a redação foi reescrita sem mudar números nem conclusões, e a versão em PDF, com 2 páginas, foi enviada aos integrantes |
+| Decisão humana | **Aceita** (29/09/2026): a equipe mantém a defesa de R$ 60,00, com o risco de o preço maior afastar clientes e a condição de virada em 80 clientes |
+
+## 9. Rodapé da interface ← sugestão alterada pela equipe
+
+| Campo | Registro |
+|---|---|
+| Data | 29/09/2026 |
+| Integrante | Carlos |
+| Objetivo | Deixar na interface só as informações que o enunciado pede |
+| Prompt utilizado | "oh de onde vem as contas foi pedido dele ter no sistema?"; depois: "deixe soq o pediu" |
+| Arquivos alterados | `app/page.tsx`, `app/page.module.css` |
+| Sugestão da IA (antes) | Rodapé "De onde vêm as contas" com quatro itens: fórmulas, conferência, dados e grupo |
+| Verificação realizada | A equipe conferiu no enunciado: a identificação do grupo (p.9) e a origem dos dados (p.5) são pedidas; as linhas de fórmulas e de conferência, não. As fórmulas continuam visíveis na conta do mês, linha a linha. 112 testes, TypeScript e lint sem erros; rodapé conferido no computador e no celular |
+| Decisão humana | **Alterada:** rodapé "Grupo e dados" só com os dois itens pedidos |
 
 ---
 
