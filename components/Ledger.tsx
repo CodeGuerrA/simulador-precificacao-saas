@@ -86,6 +86,7 @@ export function Ledger({ lines, verdict, changed, version }: LedgerProps) {
                 <td>
                   <div className={styles.description}>
                     <Term label={line.label} definition={line.definition} />
+                    {showWork && <span className={styles.formula}>{line.formula}</span>}
                     {showWork && line.work && <span className={styles.work}>{line.work}</span>}
                   </div>
                 </td>
@@ -108,6 +109,7 @@ export function Ledger({ lines, verdict, changed, version }: LedgerProps) {
                 <Marked changed={changed.has(line.key)} version={version} answer={line.key === "breakEven"} text={line.display} />
               )}
             </dd>
+            {showWork && <dd className={styles.formula}>{line.formula}</dd>}
             {showWork && line.work && <dd className={styles.work}>{line.work}</dd>}
           </div>
         ))}

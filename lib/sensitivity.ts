@@ -54,7 +54,7 @@ export function buildSensitivity(input: PricingInput): SensitivityLimit[] {
     },
     {
       key: "taxRate",
-      label: "Tributos sobre a receita",
+      label: "Taxa de tributos",
       current: taxRate,
       limit: revenue > 0 ? 1 - (fixedCost + variableCostPerCustomer * customers) / revenue : null,
       direction: "max",

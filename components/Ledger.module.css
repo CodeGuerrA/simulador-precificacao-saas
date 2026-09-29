@@ -91,6 +91,12 @@
   gap: var(--space-1);
 }
 
+.formula {
+  font-size: var(--font-size-caption);
+  color: var(--color-on-pen);
+  line-height: 1.4;
+}
+
 .work {
   font-size: var(--font-size-caption);
   color: var(--color-on-pen-muted);

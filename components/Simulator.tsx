@@ -247,11 +247,11 @@ export function Simulator() {
             <legend className={styles.legend}>Hipótese</legend>
             <Field
               id="taxRatePercent"
-              label="Tributos sobre a receita"
-              suffix="% ao mês"
+              label="Taxa de tributos"
+              suffix="% da receita"
               mask="percent"
               placeholder="0"
-              helper="Taxa hipotética para a simulação. Não é alíquota legal."
+              helper="Parte da receita paga em tributos a cada mês. Hipotética: não é alíquota legal."
               value={form.taxRatePercent}
               error={errorFor("taxRatePercent")}
               onChange={(value) => update("taxRatePercent", value)}

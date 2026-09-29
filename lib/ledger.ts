@@ -18,6 +18,8 @@ export type LedgerLine = {
   operator: LedgerOperator;
   label: string;
   definition: string;
+  /** Fórmula escrita com os nomes dos campos, para ligar a conta às entradas. */
+  formula: string;
   /** Texto exibido; null antes do primeiro cálculo. */
   display: string | null;
   /** Memória de cálculo com os números do usuário; null antes do primeiro cálculo. */
@@ -26,23 +28,46 @@ export type LedgerLine = {
   raw: number | null;
 };
 
-export const LEDGER_DEFINITIONS: Record<LedgerKey, { label: string; definition: string }> = {
-  revenue: { label: "Receita", definition: "Preço mensal multiplicado pela quantidade de clientes." },
-  fixedCost: { label: "Custo fixo", definition: "Gasto do mês que não muda com a quantidade de clientes, como equipe e ferramentas." },
-  variableCost: { label: "Custo variável", definition: "Gasto que cresce com cada cliente, como infraestrutura e suporte." },
-  taxes: { label: "Tributos", definition: "Taxa hipotética aplicada sobre a receita do mês. Não é alíquota legal." },
+export const LEDGER_DEFINITIONS: Record<LedgerKey, { label: string; definition: string; formula: string }> = {
+  revenue: {
+    label: "Receita",
+    definition: "Quanto a empresa recebe no mês: o preço mensal de cada cliente vezes a quantidade de clientes.",
+    formula: "preço mensal × clientes no mês",
+  },
+  fixedCost: {
+    label: "Custo fixo",
+    definition: "Gasto do mês que não muda com a quantidade de clientes, como equipe e ferramentas.",
+    formula: "custo fixo mensal, como informado",
+  },
+  variableCost: {
+    label: "Custo variável total",
+    definition: "Gasto que cresce com cada cliente, como infraestrutura e suporte, somado para todos os clientes do mês.",
+    formula: "custo variável por cliente × clientes no mês",
+  },
+  taxes: {
+    label: "Tributos",
+    definition: "Valor em reais pago de tributos no mês: a receita vezes a taxa de tributos. A taxa é hipotética, não é alíquota legal.",
+    formula: "receita × taxa de tributos",
+  },
   operatingResult: {
     label: "Resultado do mês",
-    definition: "Receita menos custo fixo, custo variável e tributos. É o saldo operacional do modelo, não o lucro contábil.",
+    definition: "Receita menos custo fixo, custo variável total e tributos. É o saldo operacional do modelo, não o lucro contábil.",
+    formula: "receita − custo fixo − custo variável total − tributos",
   },
-  margin: { label: "Margem", definition: "Resultado dividido pela receita, em porcentagem. Só existe quando há receita." },
+  margin: {
+    label: "Margem",
+    definition: "Resultado do mês dividido pela receita, em porcentagem. Só existe quando há receita.",
+    formula: "resultado do mês ÷ receita × 100",
+  },
   unitContribution: {
     label: "Contribuição por cliente",
-    definition: "Quanto cada cliente deixa para cobrir o custo fixo depois do tributo e do custo variável.",
+    definition: "Quanto cada cliente deixa para cobrir o custo fixo depois dos tributos e do custo variável dele.",
+    formula: "preço mensal × (1 − taxa de tributos) − custo variável por cliente",
   },
   breakEven: {
     label: "Clientes de equilíbrio",
     definition: "Menor quantidade inteira de clientes com resultado maior ou igual a zero.",
+    formula: "custo fixo mensal ÷ contribuição por cliente, arredondado para cima",
   },
 };
 
